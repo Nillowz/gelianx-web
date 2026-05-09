@@ -1,4 +1,6 @@
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
+import GelianxLogo from "./components/GelianxLogo"
 import {
   Activity,
   CheckCircle2,
@@ -70,34 +72,50 @@ const technologies = [
 ]
 
 const terminalLines = [
-  "gelianx@infra:~$ running infrastructure assessment",
-  "✓ Network topology reviewed",
-  "✓ VLAN segmentation and routing checked",
-  "✓ Firewall and VPN policies validated",
-  "✓ Backup status verification completed",
-  "✓ Technical documentation updated",
+  "gelianx@infra:~$ iniciando evaluacion de infraestructura",
+  "✓ Topología de red revisada",
+  "✓ Segmentación VLAN verificada",
+  "✓ Políticas de firewall y VPN validadas",
+  "✓ Verificación de respaldos completada",
+  "✓ Monitoreo y registros operativos",
+  "✓ Documentación técnica sincronizada",
 ]
 
 const metrics = [
   {
     icon: Activity,
-    label: "Continuidad",
+    label: "Red",
     value: "Operativa",
   },
   {
     icon: ShieldCheck,
-    label: "Enfoque",
-    value: "Seguro",
-  },
-  {
-    icon: FileText,
-    label: "Gestión",
-    value: "Documentada",
+    label: "Seguridad",
+    value: "Protegida",
   },
   {
     icon: Cloud,
-    label: "Soporte",
-    value: "Empresarial",
+    label: "Infraestructura",
+    value: "Disponible",
+  },
+  {
+    icon: Database,
+    label: "Monitoreo",
+    value: "Activo",
+  },
+]
+
+const floatingCards = [
+  {
+    label: "Firewall",
+    value: "Políticas revisadas",
+  },
+  {
+    label: "VPN",
+    value: "Acceso seguro",
+  },
+  {
+    label: "Backups",
+    value: "Verificación activa",
   },
 ]
 
@@ -163,17 +181,12 @@ const strengths = [
 
 function App() {
   return (
-    <main className="min-h-screen overflow-hidden bg-slate-950 text-white">
-      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
+    <main className="min-h-screen overflow-hidden bg-slate-900 text-white">
+      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-90075 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-400/10 shadow-lg shadow-cyan-400/10">
-              <Network className="h-5 w-5 text-cyan-400" />
-            </div>
-            <span className="text-2xl font-black tracking-tight">
-              Gelianx<span className="text-cyan-400">.</span>
-            </span>
-          </a>
+          <a href="#">
+  <GelianxLogo />
+</a>
 
           <div className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
             <a href="#servicios" className="transition hover:text-cyan-400">
@@ -191,6 +204,12 @@ function App() {
             <a href="#contacto" className="transition hover:text-cyan-400">
               Contacto
             </a>
+            <Link
+  to="/servicios"
+  className="transition hover:text-cyan-400"
+>
+  Soluciones
+</Link>
           </div>
 
           <a
@@ -203,9 +222,25 @@ function App() {
       </header>
 
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 pt-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.18),transparent_38%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20" />
-        <div className="absolute left-1/2 top-24 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.18),transparent_38%)]" />
+
+  <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20" />
+
+  <>
+    <div className="absolute left-1/2 top-24 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
+
+    <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
+
+    <div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-cyan-500/10 blur-3xl" />
+
+    <div className="absolute left-1/3 top-1/3 h-[16rem] w-[16rem] rounded-full bg-cyan-300/5 blur-3xl" />
+    
+    <div className="absolute left-0 top-32 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent" />
+    
+    <div className="absolute left-32 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent" />
+    
+    <div className="absolute bottom-24 right-0 h-px w-full bg-gradient-to-l from-transparent via-blue-400/10 to-transparent" />
+  </>
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <motion.div
@@ -214,7 +249,7 @@ function App() {
             transition={{ duration: 0.7 }}
           >
             <div className="mb-6 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300">
-              Servicios profesionales de infraestructura TI
+              Infraestructura TI • Redes Empresariales • Continuidad Operativa
             </div>
 
             <p className="mb-5 text-sm font-bold uppercase tracking-[0.35em] text-cyan-400">
@@ -222,13 +257,11 @@ function App() {
             </p>
 
             <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight md:text-7xl">
-              Tecnología confiable para operaciones empresariales.
+              Infraestructura tecnológica moderna para operaciones empresariales.
             </h1>
 
             <p className="mb-8 max-w-2xl text-lg leading-8 text-slate-300">
-              Instalación, mantenimiento, soporte e implementación de servicios
-              TI orientados a disponibilidad, seguridad, documentación y
-              continuidad operativa.
+              Instalación, mantenimiento y soporte de infraestructura TI orientados a disponibilidad, conectividad, seguridad, documentación técnica y continuidad operativa.
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
@@ -236,7 +269,7 @@ function App() {
                 href="https://wa.me/593960451362"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-8 py-3 text-center font-bold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:bg-cyan-300"
               >
-                Solicitar asesoría
+                Solicitar evaluación técnica
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </a>
 
@@ -244,25 +277,49 @@ function App() {
                 href="#servicios"
                 className="rounded-full border border-slate-600 px-8 py-3 text-center font-bold text-white transition hover:border-cyan-400 hover:text-cyan-400"
               >
-                Ver servicios
+                Explorar servicios
               </a>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-cyan-950/40 backdrop-blur"
-          >
-            <div className="rounded-2xl bg-slate-900 p-6">
+  initial={{ opacity: 0, scale: 0.96 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.7, delay: 0.15 }}
+  className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl"
+>
+  <motion.div
+    initial={{ opacity: 0, y: -16 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.5 }}
+    className="absolute -right-4 -top-5 hidden rounded-2xl border border-cyan-400/20 bg-slate-900/90 px-5 py-4 shadow-xl shadow-cyan-950/40 backdrop-blur md:block"
+  >
+    <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+      Estado
+    </p>
+    <p className="mt-1 font-bold text-emerald-400">Operativo</p>
+  </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.65 }}
+              className="absolute -bottom-5 -left-4 hidden rounded-2xl border border-cyan-400/20 bg-slate-900/90 px-5 py-4 shadow-xl shadow-cyan-950/40 backdrop-blur md:block"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+                Enfoque
+              </p>
+              <p className="mt-1 font-bold text-cyan-300">Documentado</p>
+            </motion.div>
+
+            <div className="rounded-2xl border border-white/5 bg-slate-900/95 p-6 shadow-2xl shadow-cyan-950/40">
               <div className="mb-5 flex items-center gap-3 border-b border-slate-800 pb-4">
                 <Terminal className="h-5 w-5 text-cyan-400" />
                 <span className="text-sm font-semibold text-slate-300">
-                  gelianx-terminal
+                  consola-operativa
                 </span>
                 <span className="ml-auto rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-400">
-                  Ready
+                  Activo
                 </span>
               </div>
 
@@ -280,18 +337,20 @@ function App() {
                 ))}
               </div>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {["Diagnóstico", "Implementación", "Validación", "Documentación"].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className="rounded-xl border border-slate-800 bg-slate-950 p-4"
-                    >
-                      <CheckCircle2 className="mb-2 h-5 w-5 text-cyan-400" />
-                      <p className="font-semibold">{item}</p>
-                    </div>
-                  )
-                )}
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {floatingCards.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-xl border border-slate-800 bg-slate-950/80 p-4 transition hover:border-cyan-400/30 hover:bg-slate-900"
+                  >
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 text-sm font-bold text-slate-200">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -360,7 +419,7 @@ function App() {
               {technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200"
+                  className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white"
                 >
                   {tech}
                 </span>
@@ -483,8 +542,61 @@ function App() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-500">
-        © 2026 Gelianx. Servicios profesionales de infraestructura TI, redes y soporte empresarial.
+            <footer className="border-t border-white/10 bg-slate-900 px-6 py-12">
+        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3">
+          <div>
+            <GelianxLogo />
+            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">
+              Servicios profesionales de infraestructura TI, redes, soporte,
+              seguridad y documentación técnica para entornos empresariales.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-slate-300">
+              Navegación
+            </h3>
+            <div className="flex flex-col gap-3 text-sm text-slate-400">
+              <a href="#servicios" className="transition hover:text-cyan-400">
+                Servicios
+              </a>
+              <a href="#tecnologias" className="transition hover:text-cyan-400">
+                Tecnologías
+              </a>
+              <a href="#metodologia" className="transition hover:text-cyan-400">
+                Metodología
+              </a>
+              <a href="#enfoque" className="transition hover:text-cyan-400">
+                Enfoque
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-slate-300">
+              Contacto
+            </h3>
+            <div className="flex flex-col gap-3 text-sm text-slate-400">
+              <a
+                href="https://wa.me/593960451362"
+                className="transition hover:text-cyan-400"
+              >
+                WhatsApp: +593 960 451 362
+              </a>
+              <p>Ecuador</p>
+              <p>Infraestructura TI • Redes • Soporte</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+          <p>
+            © 2026 Gelianx. Servicios profesionales de infraestructura TI.
+          </p>
+          <p>
+            Marca personal técnica orientada a soluciones empresariales.
+          </p>
+        </div>
       </footer>
     </main>
   )
