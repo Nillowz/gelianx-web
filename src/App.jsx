@@ -216,7 +216,7 @@ useEffect(() => {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 30, scale: 0.94 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className="relative w-full max-w-3xl overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-cyan-950/50"
+        className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-cyan-950/50"
       >
         <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-52 w-52 rounded-full bg-blue-500/10 blur-3xl" />
@@ -276,7 +276,7 @@ useEffect(() => {
     </motion.div>
   )}
 </AnimatePresence>
-      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-90075 backdrop-blur-xl">
+      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-900/75 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#">
   <GelianxLogo />
@@ -363,6 +363,12 @@ useEffect(() => {
       </a>
       <Link onClick={() => setMenuOpen(false)} to="/servicios" className="text-cyan-300 hover:text-cyan-400">
         Soluciones
+      </Link>
+      <Link
+      onClick={() => setMenuOpen(false)}
+      to="/validacion"
+      className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-center font-bold text-cyan-300 hover:bg-cyan-400/20">
+      CSV / GxP
       </Link>
     </div>
   </div>
