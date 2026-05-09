@@ -1,7 +1,7 @@
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import GelianxLogo from "./components/GelianxLogo"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   Activity,
   CheckCircle2,
@@ -184,8 +184,98 @@ const strengths = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showValidationPopup, setShowValidationPopup] = useState(false)
+
+useEffect(() => {
+  const openTimer = setTimeout(() => {
+    setShowValidationPopup(true)
+  }, 2000)
+
+  const closeTimer = setTimeout(() => {
+    setShowValidationPopup(false)
+  }, 17000)
+
+  return () => {
+    clearTimeout(openTimer)
+    clearTimeout(closeTimer)
+  }
+}, [])
   return (
     <main className="min-h-screen overflow-hidden bg-slate-900 text-white">
+     <AnimatePresence>
+  {showValidationPopup && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.45 }}
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/70 px-6 backdrop-blur-md"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 30, scale: 0.94 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="relative w-full max-w-3xl overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-cyan-950/50"
+      >
+        <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-52 w-52 rounded-full bg-blue-500/10 blur-3xl" />
+
+        <button
+          onClick={() => setShowValidationPopup(false)}
+          className="absolute right-5 top-5 z-10 rounded-full border border-slate-700 p-2 text-slate-400 transition hover:border-cyan-400 hover:text-cyan-400"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="relative">
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+            Especialidad técnica
+          </p>
+
+          <h3 className="max-w-2xl text-4xl font-black leading-tight md:text-5xl">
+            Validación de Sistemas Computarizados
+          </h3>
+
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            Enfoque orientado a documentación técnica, trazabilidad, protocolos
+            IQ/OQ/PQ y soporte para ambientes regulados con buenas prácticas
+            GxP/GAMP 5.
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-3">
+            {["IQ", "OQ", "PQ", "CSV", "GxP", "GAMP 5"].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <Link
+              to="/validacion"
+              onClick={() => setShowValidationPopup(false)}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-8 py-3 font-bold text-slate-950 transition hover:bg-cyan-300"
+            >
+              Conocer enfoque CSV/GxP
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            <button
+              onClick={() => setShowValidationPopup(false)}
+              className="rounded-full border border-slate-600 px-8 py-3 font-bold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
+            >
+              Continuar navegando
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
       <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-90075 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#">
@@ -214,6 +304,30 @@ function App() {
 >
   Soluciones
 </Link>
+
+<div className="group relative">
+  <Link
+    to="/validacion"
+    className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-cyan-300 shadow-lg shadow-cyan-950/20 transition hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white"
+  >
+    CSV / GxP
+  </Link>
+
+  <div className="pointer-events-none absolute right-0 top-14 w-72 rounded-2xl border border-cyan-400/20 bg-slate-950/95 p-4 opacity-0 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl transition duration-300 group-hover:opacity-100">
+    <p className="text-sm font-bold text-cyan-300">
+      Validación de Sistemas Computarizados
+    </p>
+
+    <p className="mt-2 text-sm leading-6 text-slate-300">
+      Enfoque orientado a documentación técnica, trazabilidad,
+      protocolos IQ/OQ/PQ y buenas prácticas GxP.
+    </p>
+
+    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+      Ingresa aquí
+    </p>
+  </div>
+</div>
           </div>
 
           <a
@@ -553,6 +667,7 @@ function App() {
               )
             })}
           </div>
+          
         </div>
       </section>
 

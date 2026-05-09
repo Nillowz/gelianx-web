@@ -7,6 +7,7 @@ import Servicios from "./pages/Servicios.jsx"
 import Tecnologias from "./pages/Tecnologias.jsx"
 import Experiencia from "./pages/Experiencia.jsx"
 import Contacto from "./pages/Contacto.jsx"
+import Validacion from "./pages/Validacion.jsx"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/tecnologias" element={<Tecnologias />} />
         <Route path="/experiencia" element={<Experiencia />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/validacion" element={<Validacion />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
