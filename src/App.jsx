@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import GelianxLogo from "./components/GelianxLogo"
+import { useState } from "react"
 import {
   Activity,
   CheckCircle2,
@@ -17,6 +18,8 @@ import {
   Cpu,
   HardDrive,
   Wifi,
+  Menu,
+  X
 } from "lucide-react"
 
 const services = [
@@ -180,6 +183,7 @@ const strengths = [
 ]
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false)
   return (
     <main className="min-h-screen overflow-hidden bg-slate-900 text-white">
       <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-90075 backdrop-blur-xl">
@@ -218,7 +222,37 @@ function App() {
           >
             WhatsApp
           </a>
+          <button
+  onClick={() => setMenuOpen(!menuOpen)}
+  className="rounded-xl border border-slate-700 p-2 text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400 md:hidden"
+>
+  {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+</button>
         </nav>
+        {menuOpen && (
+  <div className="border-t border-white/10 bg-slate-900/95 px-6 py-5 backdrop-blur-xl md:hidden">
+    <div className="flex flex-col gap-4 text-sm font-medium text-slate-300">
+      <a onClick={() => setMenuOpen(false)} href="#servicios" className="hover:text-cyan-400">
+        Servicios
+      </a>
+      <a onClick={() => setMenuOpen(false)} href="#tecnologias" className="hover:text-cyan-400">
+        Tecnologías
+      </a>
+      <a onClick={() => setMenuOpen(false)} href="#metodologia" className="hover:text-cyan-400">
+        Metodología
+      </a>
+      <a onClick={() => setMenuOpen(false)} href="#enfoque" className="hover:text-cyan-400">
+        Enfoque
+      </a>
+      <a onClick={() => setMenuOpen(false)} href="#contacto" className="hover:text-cyan-400">
+        Contacto
+      </a>
+      <Link onClick={() => setMenuOpen(false)} to="/servicios" className="text-cyan-300 hover:text-cyan-400">
+        Soluciones
+      </Link>
+    </div>
+  </div>
+)}
       </header>
 
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 pt-28">

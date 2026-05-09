@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import GelianxLogo from "../components/GelianxLogo"
-import { ArrowRight, CheckCircle2, Network, Server, ShieldCheck, Wrench, Mail, FileText } from "lucide-react"
+import { ArrowRight, CheckCircle2, Network, Server, ShieldCheck, Wrench, Mail, FileText, Menu,X, } from "lucide-react"
+import { useState } from "react"
 
 
 const detailedServices = [
