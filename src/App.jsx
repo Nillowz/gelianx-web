@@ -1,7 +1,10 @@
-import { AnimatePresence, motion } from "framer-motion"
-import { Link } from "react-router-dom"
-import GelianxLogo from "./components/GelianxLogo"
-import { useEffect, useState } from "react"
+// ==============================
+// IMPORTS
+// ==============================
+import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import GelianxLogo from "./components/GelianxLogo";
+import { useEffect, useState } from "react";
 import {
   Activity,
   CheckCircle2,
@@ -19,9 +22,12 @@ import {
   HardDrive,
   Wifi,
   Menu,
-  X
-} from "lucide-react"
+  X,
+} from "lucide-react";
 
+// ==============================
+// DATA: SERVICIOS DEL HOME
+// ==============================
 const services = [
   {
     icon: Network,
@@ -59,8 +65,11 @@ const services = [
     description:
       "Inventarios, diagramas, procedimientos, checklists, evidencias y documentación para ambientes empresariales.",
   },
-]
+];
 
+// ==============================
+// DATA: TECNOLOGÍAS
+// ==============================
 const technologies = [
   "Cisco",
   "Fortinet",
@@ -72,8 +81,11 @@ const technologies = [
   "SharePoint",
   "Veeam",
   "Power BI",
-]
+];
 
+// ==============================
+// DATA: TERMINAL DEL HERO
+// ==============================
 const terminalLines = [
   "gelianx@infra:~$ iniciando evaluacion de infraestructura",
   "✓ Topología de red revisada",
@@ -82,8 +94,11 @@ const terminalLines = [
   "✓ Verificación de respaldos completada",
   "✓ Monitoreo y registros operativos",
   "✓ Documentación técnica sincronizada",
-]
+];
 
+// ==============================
+// DATA: MÉTRICAS DE TECNOLOGÍAS
+// ==============================
 const metrics = [
   {
     icon: Activity,
@@ -105,8 +120,11 @@ const metrics = [
     label: "Monitoreo",
     value: "Activo",
   },
-]
+];
 
+// ==============================
+// DATA: TARJETAS DEL HERO
+// ==============================
 const floatingCards = [
   {
     label: "Firewall",
@@ -120,8 +138,11 @@ const floatingCards = [
     label: "Backups",
     value: "Verificación activa",
   },
-]
+];
 
+// ==============================
+// DATA: METODOLOGÍA
+// ==============================
 const processSteps = [
   {
     number: "01",
@@ -153,8 +174,11 @@ const processSteps = [
     description:
       "Entrega de evidencia, recomendaciones, inventario, checklist o documentación técnica según aplique.",
   },
-]
+];
 
+// ==============================
+// DATA: ENFOQUE
+// ==============================
 const strengths = [
   {
     icon: Cpu,
@@ -180,107 +204,112 @@ const strengths = [
     description:
       "Experiencia práctica en soporte, redes, sistemas, usuarios y plataformas usadas en operación empresarial.",
   },
-]
+];
 
+// ==============================
+// COMPONENTE PRINCIPAL
+// ==============================
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [showValidationPopup, setShowValidationPopup] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showValidationPopup, setShowValidationPopup] = useState(false);
 
-useEffect(() => {
-  const openTimer = setTimeout(() => {
-    setShowValidationPopup(true)
-  }, 2000)
+  useEffect(() => {
+    const openTimer = setTimeout(() => {
+      setShowValidationPopup(true);
+    }, 2000);
 
-  const closeTimer = setTimeout(() => {
-    setShowValidationPopup(false)
-  }, 17000)
+    const closeTimer = setTimeout(() => {
+      setShowValidationPopup(false);
+    }, 17000);
 
-  return () => {
-    clearTimeout(openTimer)
-    clearTimeout(closeTimer)
-  }
-}, [])
+    return () => {
+      clearTimeout(openTimer);
+      clearTimeout(closeTimer);
+    };
+  }, []);
   return (
     <main className="min-h-screen overflow-hidden bg-slate-900 text-white">
-     <AnimatePresence>
-  {showValidationPopup && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.45 }}
-      className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/70 px-6 backdrop-blur-md"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.94 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 30, scale: 0.94 }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
-        className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-cyan-950/50"
-      >
-        <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-52 w-52 rounded-full bg-blue-500/10 blur-3xl" />
+      {/* POPUP VALIDACIÓN CSV/GxP */}
+      <AnimatePresence>
+        {showValidationPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.45 }}
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/70 px-6 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.94 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+              className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-cyan-950/50"
+            >
+              <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-52 w-52 rounded-full bg-blue-500/10 blur-3xl" />
 
-        <button
-          onClick={() => setShowValidationPopup(false)}
-          className="absolute right-5 top-5 z-10 rounded-full border border-slate-700 p-2 text-slate-400 transition hover:border-cyan-400 hover:text-cyan-400"
-        >
-          <X className="h-5 w-5" />
-        </button>
-
-        <div className="relative">
-          <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
-            Especialidad técnica
-          </p>
-
-          <h3 className="max-w-2xl text-4xl font-black leading-tight md:text-5xl">
-            Validación de Sistemas Computarizados
-          </h3>
-
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Enfoque orientado a documentación técnica, trazabilidad, protocolos
-            IQ/OQ/PQ y soporte para ambientes regulados con buenas prácticas
-            GxP/GAMP 5.
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            {["IQ", "OQ", "PQ", "CSV", "GxP", "GAMP 5"].map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200"
+              <button
+                onClick={() => setShowValidationPopup(false)}
+                className="absolute right-5 top-5 z-10 rounded-full border border-slate-700 p-2 text-slate-400 transition hover:border-cyan-400 hover:text-cyan-400"
               >
-                {item}
-              </span>
-            ))}
-          </div>
+                <X className="h-5 w-5" />
+              </button>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <Link
-              to="/validacion"
-              onClick={() => setShowValidationPopup(false)}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-8 py-3 font-bold text-slate-950 transition hover:bg-cyan-300"
-            >
-              Conocer enfoque CSV/GxP
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <div className="relative">
+                <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+                  Especialidad técnica
+                </p>
 
-            <button
-              onClick={() => setShowValidationPopup(false)}
-              className="rounded-full border border-slate-600 px-8 py-3 font-bold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
-            >
-              Continuar navegando
-            </button>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+                <h3 className="max-w-2xl text-4xl font-black leading-tight md:text-5xl">
+                  Validación de Sistemas Computarizados
+                </h3>
+
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+                  Enfoque orientado a documentación técnica, trazabilidad,
+                  protocolos IQ/OQ/PQ y soporte para ambientes regulados con
+                  buenas prácticas GxP/GAMP 5.
+                </p>
+
+                <div className="mt-7 flex flex-wrap gap-3">
+                  {["IQ", "OQ", "PQ", "CSV", "GxP", "GAMP 5"].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Link
+                    to="/validacion"
+                    onClick={() => setShowValidationPopup(false)}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-8 py-3 font-bold text-slate-950 transition hover:bg-cyan-300"
+                  >
+                    Conocer enfoque CSV/GxP
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+
+                  <button
+                    onClick={() => setShowValidationPopup(false)}
+                    className="rounded-full border border-slate-600 px-8 py-3 font-bold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
+                  >
+                    Continuar navegando
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* NAVBAR PRINCIPAL */}
       <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-900/75 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#">
-  <GelianxLogo />
-</a>
+            <GelianxLogo />
+          </a>
 
           <div className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
             <a href="#servicios" className="transition hover:text-cyan-400">
@@ -298,36 +327,33 @@ useEffect(() => {
             <a href="#contacto" className="transition hover:text-cyan-400">
               Contacto
             </a>
-            <Link
-  to="/servicios"
-  className="transition hover:text-cyan-400"
->
-  Soluciones
-</Link>
+            <Link to="/servicios" className="transition hover:text-cyan-400">
+              Soluciones
+            </Link>
 
-<div className="group relative">
-  <Link
-    to="/validacion"
-    className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-cyan-300 shadow-lg shadow-cyan-950/20 transition hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white"
-  >
-    CSV / GxP
-  </Link>
+            <div className="group relative">
+              <Link
+                to="/validacion"
+                className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-cyan-300 shadow-lg shadow-cyan-950/20 transition hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white"
+              >
+                CSV / GxP
+              </Link>
 
-  <div className="pointer-events-none absolute right-0 top-14 w-72 rounded-2xl border border-cyan-400/20 bg-slate-950/95 p-4 opacity-0 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl transition duration-300 group-hover:opacity-100">
-    <p className="text-sm font-bold text-cyan-300">
-      Validación de Sistemas Computarizados
-    </p>
+              <div className="pointer-events-none absolute right-0 top-14 w-72 rounded-2xl border border-cyan-400/20 bg-slate-950/95 p-4 opacity-0 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl transition duration-300 group-hover:opacity-100">
+                <p className="text-sm font-bold text-cyan-300">
+                  Validación de Sistemas Computarizados
+                </p>
 
-    <p className="mt-2 text-sm leading-6 text-slate-300">
-      Enfoque orientado a documentación técnica, trazabilidad,
-      protocolos IQ/OQ/PQ y buenas prácticas GxP.
-    </p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  Enfoque orientado a documentación técnica, trazabilidad,
+                  protocolos IQ/OQ/PQ y buenas prácticas GxP.
+                </p>
 
-    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
-      Ingresa aquí
-    </p>
-  </div>
-</div>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                  Ingresa aquí
+                </p>
+              </div>
+            </div>
           </div>
 
           <a
@@ -337,66 +363,97 @@ useEffect(() => {
             WhatsApp
           </a>
           <button
-  onClick={() => setMenuOpen(!menuOpen)}
-  className="rounded-xl border border-slate-700 p-2 text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400 md:hidden"
->
-  {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-</button>
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="rounded-xl border border-slate-700 p-2 text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400 md:hidden"
+          >
+            {menuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </button>
         </nav>
         {menuOpen && (
-  <div className="border-t border-white/10 bg-slate-900/95 px-6 py-5 backdrop-blur-xl md:hidden">
-    <div className="flex flex-col gap-4 text-sm font-medium text-slate-300">
-      <a onClick={() => setMenuOpen(false)} href="#servicios" className="hover:text-cyan-400">
-        Servicios
-      </a>
-      <a onClick={() => setMenuOpen(false)} href="#tecnologias" className="hover:text-cyan-400">
-        Tecnologías
-      </a>
-      <a onClick={() => setMenuOpen(false)} href="#metodologia" className="hover:text-cyan-400">
-        Metodología
-      </a>
-      <a onClick={() => setMenuOpen(false)} href="#enfoque" className="hover:text-cyan-400">
-        Enfoque
-      </a>
-      <a onClick={() => setMenuOpen(false)} href="#contacto" className="hover:text-cyan-400">
-        Contacto
-      </a>
-      <Link onClick={() => setMenuOpen(false)} to="/servicios" className="text-cyan-300 hover:text-cyan-400">
-        Soluciones
-      </Link>
-      <Link
-      onClick={() => setMenuOpen(false)}
-      to="/validacion"
-      className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-center font-bold text-cyan-300 hover:bg-cyan-400/20">
-      CSV / GxP
-      </Link>
-    </div>
-  </div>
-)}
+          <div className="border-t border-white/10 bg-slate-900/95 px-6 py-5 backdrop-blur-xl md:hidden">
+            <div className="flex flex-col gap-4 text-sm font-medium text-slate-300">
+              <a
+                onClick={() => setMenuOpen(false)}
+                href="#servicios"
+                className="hover:text-cyan-400"
+              >
+                Servicios
+              </a>
+              <a
+                onClick={() => setMenuOpen(false)}
+                href="#tecnologias"
+                className="hover:text-cyan-400"
+              >
+                Tecnologías
+              </a>
+              <a
+                onClick={() => setMenuOpen(false)}
+                href="#metodologia"
+                className="hover:text-cyan-400"
+              >
+                Metodología
+              </a>
+              <a
+                onClick={() => setMenuOpen(false)}
+                href="#enfoque"
+                className="hover:text-cyan-400"
+              >
+                Enfoque
+              </a>
+              <a
+                onClick={() => setMenuOpen(false)}
+                href="#contacto"
+                className="hover:text-cyan-400"
+              >
+                Contacto
+              </a>
+              <Link
+                onClick={() => setMenuOpen(false)}
+                to="/servicios"
+                className="text-cyan-300 hover:text-cyan-400"
+              >
+                Soluciones
+              </Link>
+              <Link
+                onClick={() => setMenuOpen(false)}
+                to="/validacion"
+                className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-center font-bold text-cyan-300 hover:bg-cyan-400/20"
+              >
+                CSV / GxP
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
+      {/* HERO / INICIO */}
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 pt-28">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.18),transparent_38%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.18),transparent_38%)]" />
 
-  <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20" />
 
-  <>
-    <div className="absolute left-1/2 top-24 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
+        <>
+          <div className="absolute left-1/2 top-24 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
 
-    <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
+          <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
 
-    <div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-cyan-500/10 blur-3xl" />
+          <div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-cyan-500/10 blur-3xl" />
 
-    <div className="absolute left-1/3 top-1/3 h-[16rem] w-[16rem] rounded-full bg-cyan-300/5 blur-3xl" />
-    
-    <div className="absolute left-0 top-32 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent" />
-    
-    <div className="absolute left-32 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent" />
-    
-    <div className="absolute bottom-24 right-0 h-px w-full bg-gradient-to-l from-transparent via-blue-400/10 to-transparent" />
-  </>
+          <div className="absolute left-1/3 top-1/3 h-[16rem] w-[16rem] rounded-full bg-cyan-300/5 blur-3xl" />
+
+          <div className="absolute left-0 top-32 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent" />
+
+          <div className="absolute left-32 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent" />
+
+          <div className="absolute bottom-24 right-0 h-px w-full bg-gradient-to-l from-transparent via-blue-400/10 to-transparent" />
+        </>
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+          <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent lg:block" />
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -411,11 +468,14 @@ useEffect(() => {
             </p>
 
             <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight md:text-7xl">
-              Infraestructura tecnológica moderna para operaciones empresariales.
+              Infraestructura tecnológica moderna para operaciones
+              empresariales.
             </h1>
 
             <p className="mb-8 max-w-2xl text-lg leading-8 text-slate-300">
-              Instalación, mantenimiento y soporte de infraestructura TI orientados a disponibilidad, conectividad, seguridad, documentación técnica y continuidad operativa.
+              Instalación, mantenimiento y soporte de infraestructura TI
+              orientados a disponibilidad, conectividad, seguridad,
+              documentación técnica y continuidad operativa.
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
@@ -434,25 +494,40 @@ useEffect(() => {
                 Explorar servicios
               </a>
             </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {[
+              "Soporte empresarial",
+              "Redes seguras",
+              "Documentación técnica",
+            ].map((item) => (
+                      <div
+          key={item}
+          className="group rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-slate-300 backdrop-blur transition hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-100"
+        >
+          <span className="mr-2 inline-block h-2 w-2 rounded-full bg-cyan-400/70 transition group-hover:bg-cyan-300" />
+          {item}
+        </div>
+            ))}
+          </div>
           </motion.div>
 
           <motion.div
-  initial={{ opacity: 0, scale: 0.96 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.7, delay: 0.15 }}
-  className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl"
->
-  <motion.div
-    initial={{ opacity: 0, y: -16 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: 0.5 }}
-    className="absolute -right-4 -top-5 hidden rounded-2xl border border-cyan-400/20 bg-slate-900/90 px-5 py-4 shadow-xl shadow-cyan-950/40 backdrop-blur md:block"
-  >
-    <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-      Estado
-    </p>
-    <p className="mt-1 font-bold text-emerald-400">Operativo</p>
-  </motion.div>
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="absolute -right-4 -top-5 hidden rounded-2xl border border-cyan-400/20 bg-slate-900/90 px-5 py-4 shadow-xl shadow-cyan-950/40 backdrop-blur md:block"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+                Estado
+              </p>
+              <p className="mt-1 font-bold text-emerald-400">Operativo</p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -484,7 +559,9 @@ useEffect(() => {
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.13 }}
-                    className={index === 0 ? "text-cyan-300" : "text-emerald-300"}
+                    className={
+                      index === 0 ? "text-cyan-300" : "text-emerald-300"
+                    }
                   >
                     {line}
                   </motion.p>
@@ -511,6 +588,7 @@ useEffect(() => {
         </div>
       </section>
 
+      {/* SECCIÓN SERVICIOS */}
       <section id="servicios" className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-14 max-w-3xl">
@@ -528,7 +606,7 @@ useEffect(() => {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => {
-              const Icon = service.icon
+              const Icon = service.icon;
               return (
                 <motion.article
                   key={service.title}
@@ -546,13 +624,17 @@ useEffect(() => {
                     {service.description}
                   </p>
                 </motion.article>
-              )
+              );
             })}
           </div>
         </div>
       </section>
 
-      <section id="tecnologias" className="relative border-y border-white/10 bg-slate-900/50 px-6 py-24">
+      {/* SECCIÓN TECNOLOGÍAS */}
+      <section
+        id="tecnologias"
+        className="relative border-y border-white/10 bg-slate-900/50 px-6 py-24"
+      >
         <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
@@ -583,7 +665,7 @@ useEffect(() => {
 
           <div className="grid gap-6 sm:grid-cols-2">
             {metrics.map((metric) => {
-              const Icon = metric.icon
+              const Icon = metric.icon;
               return (
                 <div
                   key={metric.label}
@@ -595,12 +677,13 @@ useEffect(() => {
                   </p>
                   <p className="mt-2 text-2xl font-black">{metric.value}</p>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </section>
 
+      {/* SECCIÓN METODOLOGÍA */}
       <section id="metodologia" className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-14 max-w-3xl">
@@ -640,7 +723,11 @@ useEffect(() => {
         </div>
       </section>
 
-      <section id="enfoque" className="border-y border-white/10 bg-slate-900/50 px-6 py-24">
+      {/* SECCIÓN ENFOQUE */}
+      <section
+        id="enfoque"
+        className="border-y border-white/10 bg-slate-900/50 px-6 py-24"
+      >
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
           <div>
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
@@ -650,15 +737,15 @@ useEffect(() => {
               Tecnología con criterio técnico y documentación.
             </h2>
             <p className="mt-5 text-lg leading-8 text-slate-400">
-              Gelianx nace como una marca personal técnica para brindar servicios
-              de infraestructura, redes, soporte y mantenimiento con una visión
-              profesional, ordenada y orientada a resultados.
+              Gelianx nace como una marca personal técnica para brindar
+              servicios de infraestructura, redes, soporte y mantenimiento con
+              una visión profesional, ordenada y orientada a resultados.
             </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
             {strengths.map((item) => {
-              const Icon = item.icon
+              const Icon = item.icon;
               return (
                 <div
                   key={item.title}
@@ -670,13 +757,13 @@ useEffect(() => {
                     {item.description}
                   </p>
                 </div>
-              )
+              );
             })}
           </div>
-          
         </div>
       </section>
 
+      {/* SECCIÓN CONTACTO */}
       <section id="contacto" className="px-6 py-24">
         <div className="mx-auto max-w-4xl rounded-3xl border border-cyan-400/30 bg-cyan-400/10 p-10 text-center shadow-2xl shadow-cyan-950/30">
           <h2 className="mb-4 text-4xl font-black">
@@ -697,15 +784,25 @@ useEffect(() => {
         </div>
       </section>
 
-            <footer className="border-t border-white/10 bg-slate-900 px-6 py-12">
+      {/* FOOTER */}
+      <footer className="relative overflow-hidden border-t border-white/10 bg-slate-900 px-6 py-14">
+      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+
+<      div className="absolute bottom-0 left-0 h-60 w-60 rounded-full bg-blue-500/10 blur-3xl" />
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3">
           <div>
             <GelianxLogo />
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-xs font-bold text-emerald-400">
+            
+            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+          Infraestructura operativa
+          </div>
             <p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">
               Servicios profesionales de infraestructura TI, redes, soporte,
               seguridad y documentación técnica para entornos empresariales.
             </p>
           </div>
+          
 
           <div>
             <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-slate-300">
@@ -745,16 +842,12 @@ useEffect(() => {
         </div>
 
         <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>
-            © 2026 Gelianx. Servicios profesionales de infraestructura TI.
-          </p>
-          <p>
-            Marca personal técnica orientada a soluciones empresariales.
-          </p>
+          <p>© 2026 Gelianx. Servicios profesionales de infraestructura TI.</p>
+          <p>Marca personal técnica orientada a soluciones empresariales.</p>
         </div>
       </footer>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

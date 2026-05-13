@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import GelianxLogo from "../components/GelianxLogo"
-import { ArrowRight, CheckCircle2, Network, Server, ShieldCheck, Wrench, Mail, FileText, Menu,X, } from "lucide-react"
-import { useState } from "react"
+import { ArrowRight, CheckCircle2, Network, Server, ShieldCheck, Wrench, Mail, FileText } from "lucide-react"
+
 
 
 const detailedServices = [
@@ -69,7 +69,33 @@ const detailedServices = [
 
 function Servicios() {
   return (
-    <main className="min-h-screen bg-slate-900 px-6 py-32 text-white">
+    <main className="relative min-h-screen overflow-hidden bg-slate-900 px-6 py-32 text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.14),transparent_35%)]" />
+
+<div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20" />
+
+<div className="absolute right-0 top-0 h-[30rem] w-[30rem] rounded-full bg-cyan-400/10 blur-3xl" />
+<div className="absolute left-[12%] top-[18%] h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl" />
+
+<div className="absolute right-[18%] top-[42%] h-52 w-52 rounded-full bg-blue-400/10 blur-3xl" />
+
+<div className="absolute left-[28%] bottom-[18%] h-44 w-44 rounded-full bg-cyan-300/10 blur-3xl" />
+
+<div className="absolute right-[8%] bottom-[12%] h-36 w-36 rounded-full bg-cyan-400/10 blur-3xl" />
+
+<div className="absolute left-1/2 top-[68%] h-64 w-64 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+
+<div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-blue-500/10 blur-3xl" />
+<div className="absolute left-[12%] top-[18%] h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl" />
+
+<div className="absolute right-[18%] top-[42%] h-52 w-52 rounded-full bg-blue-400/10 blur-3xl" />
+
+<div className="absolute left-[28%] bottom-[18%] h-44 w-44 rounded-full bg-cyan-300/10 blur-3xl" />
+
+<div className="absolute right-[8%] bottom-[12%] h-36 w-36 rounded-full bg-cyan-400/10 blur-3xl" />
+
+<div className="absolute left-1/2 top-[68%] h-64 w-64 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+
         <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-900/75 backdrop-blur-xl">
   <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
     <Link to="/">
@@ -84,7 +110,7 @@ function Servicios() {
     </Link>
   </nav>
 </header>
-      <section className="mx-auto max-w-7xl">
+      <section className="relative mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
             Servicios
