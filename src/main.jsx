@@ -8,10 +8,12 @@ import Tecnologias from "./pages/Tecnologias.jsx"
 import Experiencia from "./pages/Experiencia.jsx"
 import Contacto from "./pages/Contacto.jsx"
 import Validacion from "./pages/Validacion.jsx"
+import ScrollToTop from "./components/ScrollToTop.jsx"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/servicios" element={<Servicios />} />
