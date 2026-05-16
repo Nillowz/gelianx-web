@@ -12,10 +12,12 @@ import {
   HardDrive,
   Mail,
   Menu,
+  Moon,
   Network,
   Server,
   ShieldCheck,
   Terminal,
+  Sun,
   Wifi,
   Wrench,
   X,
@@ -219,6 +221,7 @@ function App() {
   const [showValidationPopup, setShowValidationPopup] = useState(false);
   const [activeTechnology, setActiveTechnology] = useState(0);
   const [pauseTechnologyCarousel, setPauseTechnologyCarousel] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   // Popup automático CSV/GxP
   useEffect(() => {
@@ -247,8 +250,81 @@ function App() {
     return () => clearInterval(techTimer);
   }, [pauseTechnologyCarousel]);
 
+  const theme = {
+    main: darkMode ? "bg-slate-900 text-white" : "bg-[#EEF4F8] text-slate-950",
+    navbar: darkMode ? "border-white/10 bg-slate-900/75" : "border-slate-200 bg-[#EEF4F8]/80",
+    navbarText: darkMode ? "text-slate-300" : "text-slate-700",
+    mobileMenu: darkMode ? "border-white/10 bg-slate-900/95 text-slate-300" : "border-slate-200 bg-[#EEF4F8]/95 text-slate-700",
+    heroText: darkMode ? "text-slate-300" : "text-slate-700",
+    mutedText: darkMode ? "text-slate-400" : "text-slate-700",
+    accentText: darkMode ? "text-cyan-400" : "text-cyan-700",
+    accentSoftText: darkMode ? "text-cyan-300" : "text-cyan-700",
+    accentPillText: darkMode ? "text-cyan-200" : "text-cyan-800",
+    accentButtonText: darkMode ? "text-cyan-500" : "text-cyan-700",
+    sectionAlt: darkMode ? "border-white/10 bg-slate-900" : "border-slate-200 bg-[#F4F8FB]/35 backdrop-blur-sm",
+    card: darkMode ? "border-slate-800 bg-slate-900 text-white shadow-xl shadow-slate-950/40" : "border-slate-200 bg-[#F4F8FB]/78 text-slate-950 shadow-xl shadow-slate-200/70 backdrop-blur-sm",
+    cardSoft: darkMode ? "border-slate-800 bg-slate-950 text-white shadow-xl shadow-slate-950/40" : "border-slate-200 bg-[#F4F8FB]/78 text-slate-950 shadow-xl shadow-slate-200/70 backdrop-blur-sm",
+    terminal: darkMode ? "border-white/5 bg-slate-900/95" : "border-slate-200 bg-slate-950",
+    darkPanelText: darkMode ? "text-slate-300" : "text-slate-200",
+    chip: darkMode ? "border-white/10 bg-slate-900/95 text-slate-300" : "border-slate-200 bg-[#F5F9FC]/70 text-slate-700 shadow-sm",
+    miniCard: darkMode ? "border-slate-800 bg-slate-950/95 text-slate-200" : "border-slate-200 bg-[#F4F8FB]/75 text-slate-700 shadow-sm backdrop-blur-sm",
+    footer: darkMode ? "border-white/10 bg-slate-900" : "border-slate-200 bg-[#EEF4F8]/55 backdrop-blur-sm",
+  };
+
   return (
-    <main className="min-h-screen overflow-hidden bg-slate-900 text-white">
+    <main className={`relative isolate min-h-screen overflow-hidden transition-colors duration-500 ${theme.main}`}>
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        {/* GLOW PRINCIPAL */}
+        <div
+          className={`absolute -top-48 right-[-14rem] h-[56rem] w-[56rem] rounded-full blur-3xl transition-all duration-700 ${
+            darkMode ? "bg-cyan-400/30" : "bg-cyan-400/30"
+          }`}
+        />
+
+        {/* GLOW CENTRAL IZQUIERDO */}
+        <div
+          className={`absolute top-[22%] left-[-14rem] h-[48rem] w-[48rem] rounded-full blur-3xl transition-all duration-700 ${
+            darkMode ? "bg-blue-500/25" : "bg-sky-400/22"
+          }`}
+        />
+
+        {/* GLOW INFERIOR */}
+        <div
+          className={`absolute bottom-[-16rem] right-[10%] h-[46rem] w-[46rem] rounded-full blur-3xl transition-all duration-700 ${
+            darkMode ? "bg-cyan-300/18" : "bg-cyan-300/22"
+          }`}
+        />
+
+        {/* GLOW EXTRA CENTRAL */}
+        <div
+          className={`absolute top-[58%] left-[38%] h-[40rem] w-[40rem] rounded-full blur-3xl transition-all duration-700 ${
+            darkMode ? "bg-blue-400/18" : "bg-cyan-400/16"
+          }`}
+        />
+
+        {/* GLOW SUPERIOR SUAVE */}
+        <div
+          className={`absolute top-[5%] left-[20%] h-[34rem] w-[34rem] rounded-full blur-3xl transition-all duration-700 ${
+            darkMode ? "bg-cyan-500/10" : "bg-blue-300/16"
+          }`}
+        />
+
+        {/* OVERLAY CYBER GRID */}
+        <div
+          className={`absolute inset-0 bg-[size:64px_64px] ${
+            darkMode
+              ? "bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] opacity-25"
+              : "bg-[linear-gradient(to_right,rgba(14,165,233,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(14,165,233,0.07)_1px,transparent_1px)] opacity-55"
+          }`}
+        />
+
+        {/* CAPA SUAVIZADO */}
+        <div
+          className={`absolute inset-0 ${
+            darkMode ? "bg-slate-950/18" : "bg-[#EEF4F8]/18"
+          }`}
+        />
+      </div>
       {/* POPUP VALIDACIÓN CSV/GxP */}
       <AnimatePresence>
         {showValidationPopup && (
@@ -257,27 +333,37 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45 }}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/70 px-6 backdrop-blur-md"
+            className={`fixed inset-0 z-[80] flex items-center justify-center px-6 backdrop-blur-md ${
+              darkMode ? "bg-slate-950/70" : "bg-slate-900/20"
+            }`}
           >
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.94 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 30, scale: 0.94 }}
               transition={{ duration: 0.55, ease: "easeOut" }}
-              className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-cyan-950/50"
+              className={`relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-cyan-400/20 p-8 shadow-2xl shadow-cyan-950/30 ${
+                darkMode
+                  ? "bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 text-white"
+                  : "bg-gradient-to-br from-[#F8FBFD] via-cyan-50 to-[#EAF2F7] text-slate-950"
+              }`}
             >
               <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
               <div className="absolute bottom-0 left-0 h-52 w-52 rounded-full bg-blue-500/10 blur-3xl" />
 
               <button
                 onClick={() => setShowValidationPopup(false)}
-                className="absolute right-5 top-5 z-10 rounded-full border border-slate-700 p-2 text-slate-400 transition hover:border-cyan-400 hover:text-cyan-400"
+                className={`absolute right-5 top-5 z-10 rounded-full border p-2 transition hover:border-cyan-400 hover:text-cyan-400 ${
+                  darkMode
+                    ? "border-slate-700 text-slate-400"
+                    : "border-slate-300 bg-[#F5F9FC]/70 text-slate-600"
+                }`}
               >
                 <X className="h-5 w-5" />
               </button>
 
               <div className="relative">
-                <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+                <p className={`mb-4 text-sm font-bold uppercase tracking-[0.3em] ${theme.accentText}`}>
                   Especialidad técnica
                 </p>
 
@@ -285,7 +371,7 @@ function App() {
                   Validación de Sistemas Computarizados
                 </h3>
 
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+                <p className={`mt-6 max-w-2xl text-lg leading-8 ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
                   Enfoque orientado a documentación técnica, trazabilidad,
                   protocolos IQ/OQ/PQ y soporte para ambientes regulados con
                   buenas prácticas GxP/GAMP 5.
@@ -295,7 +381,7 @@ function App() {
                   {["IQ", "OQ", "PQ", "CSV", "GxP", "GAMP 5"].map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200"
+                      className={`rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold ${theme.accentPillText}`}
                     >
                       {item}
                     </span>
@@ -314,7 +400,11 @@ function App() {
 
                   <button
                     onClick={() => setShowValidationPopup(false)}
-                    className="rounded-full border border-slate-600 px-8 py-3 font-bold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
+                    className={`rounded-full border px-8 py-3 font-bold transition ${
+                      darkMode
+                        ? "border-slate-600 text-slate-300 hover:border-cyan-400 hover:text-cyan-400"
+                        : "border-slate-300 bg-[#F5F9FC]/75 text-slate-700 hover:border-cyan-500 hover:text-cyan-700"
+                    }`}
                   >
                     Continuar navegando
                   </button>
@@ -326,37 +416,37 @@ function App() {
       </AnimatePresence>
 
       {/* NAVBAR PRINCIPAL */}
-      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-900/75 backdrop-blur-xl">
+      <header className={`fixed left-0 top-0 z-50 w-full border-b backdrop-blur-xl transition-colors duration-500 ${theme.navbar}`}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#">
             <GelianxLogo />
           </a>
 
-          <div className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
-            <a href="#servicios" className="transition hover:text-cyan-400">
+          <div className={`hidden items-center gap-8 text-sm font-medium md:flex ${theme.navbarText}`}>
+            <a href="#servicios" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
               Servicios
             </a>
-            <a href="#tecnologias" className="transition hover:text-cyan-400">
+            <a href="#tecnologias" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
               Tecnologías
             </a>
-            <a href="#metodologia" className="transition hover:text-cyan-400">
+            <a href="#metodologia" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
               Metodología
             </a>
-            <a href="#enfoque" className="transition hover:text-cyan-400">
+            <a href="#enfoque" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
               Enfoque
             </a>
-            <a href="#contacto" className="transition hover:text-cyan-400">
+            <a href="#contacto" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
               Contacto
             </a>
 
-            <Link to="/servicios" className="transition hover:text-cyan-400">
+            <Link to="/servicios" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
               Soluciones
             </Link>
 
             <div className="group relative">
               <Link
                 to="/validacion"
-                className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-cyan-300 shadow-lg shadow-cyan-950/20 transition hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white"
+                className={`rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 shadow-lg shadow-cyan-950/20 transition hover:border-cyan-500 hover:bg-cyan-400/20 ${darkMode ? "text-cyan-300 hover:text-white" : "text-cyan-700 hover:text-cyan-900"}`}
               >
                 CSV / GxP
               </Link>
@@ -386,6 +476,23 @@ function App() {
           </a>
 
           <button
+            onClick={() => setDarkMode(!darkMode)}
+            className={`hidden items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-bold transition hover:bg-cyan-400/20 md:inline-flex ${theme.accentButtonText}`}
+            title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+          >
+            {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {darkMode ? "Claro" : "Oscuro"}
+          </button>
+
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className={`rounded-xl border border-cyan-400/30 p-2 transition hover:bg-cyan-400/10 md:hidden ${theme.accentButtonText}`}
+            title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+          >
+            {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
+
+          <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="rounded-xl border border-slate-700 p-2 text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400 md:hidden"
           >
@@ -394,54 +501,54 @@ function App() {
         </nav>
 
         {menuOpen && (
-          <div className="border-t border-white/10 bg-slate-900/95 px-6 py-5 backdrop-blur-xl md:hidden">
-            <div className="flex flex-col gap-4 text-sm font-medium text-slate-300">
+          <div className={`border-t px-6 py-5 backdrop-blur-xl md:hidden ${theme.mobileMenu}`}>
+            <div className={`flex flex-col gap-4 text-sm font-medium ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
               <a
                 onClick={() => setMenuOpen(false)}
                 href="#servicios"
-                className="hover:text-cyan-400"
+                className={`${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}
               >
                 Servicios
               </a>
               <a
                 onClick={() => setMenuOpen(false)}
                 href="#tecnologias"
-                className="hover:text-cyan-400"
+                className={`${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}
               >
                 Tecnologías
               </a>
               <a
                 onClick={() => setMenuOpen(false)}
                 href="#metodologia"
-                className="hover:text-cyan-400"
+                className={`${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}
               >
                 Metodología
               </a>
               <a
                 onClick={() => setMenuOpen(false)}
                 href="#enfoque"
-                className="hover:text-cyan-400"
+                className={`${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}
               >
                 Enfoque
               </a>
               <a
                 onClick={() => setMenuOpen(false)}
                 href="#contacto"
-                className="hover:text-cyan-400"
+                className={`${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}
               >
                 Contacto
               </a>
               <Link
                 onClick={() => setMenuOpen(false)}
                 to="/servicios"
-                className="text-cyan-300 hover:text-cyan-400"
+                className={`${theme.accentSoftText} hover:text-cyan-500`}
               >
                 Soluciones
               </Link>
               <Link
                 onClick={() => setMenuOpen(false)}
                 to="/validacion"
-                className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-center font-bold text-cyan-300 hover:bg-cyan-400/20"
+                className={`rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-center font-bold hover:bg-cyan-400/20 ${theme.accentSoftText}`}
               >
                 CSV / GxP
               </Link>
@@ -452,8 +559,20 @@ function App() {
 
       {/* HERO / INICIO */}
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 pt-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.18),transparent_38%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20" />
+        <div
+          className={`absolute inset-0 ${
+            darkMode
+              ? "bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.18),transparent_38%)]"
+              : "bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.12),transparent_38%)]"
+          }`}
+        />
+        <div
+          className={`absolute inset-0 bg-[size:64px_64px] ${
+            darkMode
+              ? "bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] opacity-20"
+              : "bg-[linear-gradient(to_right,rgba(14,165,233,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(14,165,233,0.08)_1px,transparent_1px)] opacity-35"
+          }`}
+        />
 
         <div className="absolute left-1/2 top-24 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
         <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
@@ -471,11 +590,11 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <div className="mb-6 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300">
+            <div className={`mb-6 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold ${theme.accentSoftText}`}>
               Infraestructura TI • Redes Empresariales • Continuidad Operativa
             </div>
 
-            <p className="mb-5 text-sm font-bold uppercase tracking-[0.35em] text-cyan-400">
+            <p className={`mb-5 text-sm font-bold uppercase tracking-[0.35em] ${theme.accentText}`}>
               Infraestructura • Redes • Seguridad
             </p>
 
@@ -483,7 +602,7 @@ function App() {
               Infraestructura, redes y soporte técnico con enfoque profesional y documentado.
             </h1>
 
-            <p className="mb-8 max-w-2xl text-lg leading-8 text-slate-300">
+            <p className={`mb-8 max-w-2xl text-lg leading-8 ${theme.heroText}`}>
               Apoyo técnico en infraestructura, redes, soporte y documentación
               para pequeñas empresas y entornos corporativos que necesitan
               orden, estabilidad y criterio técnico.
@@ -500,7 +619,11 @@ function App() {
 
               <a
                 href="#servicios"
-                className="rounded-full border border-slate-600 px-8 py-3 text-center font-bold text-white transition hover:border-cyan-400 hover:text-cyan-400"
+                className={`rounded-full border px-8 py-3 text-center font-bold transition ${
+                  darkMode
+                    ? "border-slate-600 text-white hover:border-cyan-400 hover:text-cyan-400"
+                    : "border-slate-300 bg-[#F5F9FC]/75 text-slate-900 shadow-sm hover:border-cyan-500 hover:bg-cyan-50 hover:text-cyan-700"
+                }`}
               >
                 Explorar servicios
               </a>
@@ -514,7 +637,7 @@ function App() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="group rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-slate-300 backdrop-blur transition hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-100"
+                  className={`group rounded-2xl border px-4 py-3 text-sm font-semibold backdrop-blur transition hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-600 ${theme.chip}`}
                 >
                   <span className="mr-2 inline-block h-2 w-2 rounded-full bg-cyan-400/70 transition group-hover:bg-cyan-300" />
                   {item}
@@ -527,7 +650,7 @@ function App() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/40 backdrop-blur-xl"
+            className={`relative rounded-3xl border p-6 shadow-2xl shadow-cyan-950/20 backdrop-blur-xl ${darkMode ? "border-white/10 bg-slate-900 text-white" : "border-slate-200 bg-[#F4F8FB]/72"}`}
           >
             <motion.div
               initial={{ opacity: 0, y: -16 }}
@@ -553,7 +676,7 @@ function App() {
               <p className="mt-1 font-bold text-cyan-300">Documentado</p>
             </motion.div>
 
-            <div className="rounded-2xl border border-white/5 bg-slate-900/95 p-6 shadow-2xl shadow-cyan-950/40">
+            <div className={`rounded-2xl p-6 shadow-2xl shadow-cyan-950/30 ${theme.terminal}`}>
               <div className="mb-5 flex items-center gap-3 border-b border-slate-800 pb-4">
                 <Terminal className="h-5 w-5 text-cyan-400" />
                 <span className="text-sm font-semibold text-slate-300">
@@ -584,12 +707,12 @@ function App() {
                 {floatingCards.map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-xl border border-slate-800 bg-slate-950/80 p-4 transition hover:border-cyan-400/30 hover:bg-slate-900"
+                    className={`rounded-xl border p-4 transition hover:border-cyan-400/30 ${theme.miniCard}`}
                   >
                     <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
                       {item.label}
                     </p>
-                    <p className="mt-2 text-sm font-bold text-slate-200">
+                    <p className={`mt-2 text-sm font-bold ${darkMode ? "text-slate-200" : "text-slate-800"}`}>
                       {item.value}
                     </p>
                   </div>
@@ -604,7 +727,7 @@ function App() {
       <section id="servicios" className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-14 max-w-3xl">
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+            <p className={`mb-3 text-sm font-bold uppercase tracking-[0.3em] ${theme.accentText}`}>
               Servicios
             </p>
 
@@ -612,7 +735,7 @@ function App() {
               Áreas donde puedo ayudarte
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-slate-400">
+            <p className={`mt-5 text-lg leading-8 ${theme.mutedText}`}>
               Servicios técnicos para pequeñas empresas, oficinas, áreas
               administrativas y entornos que requieren soporte confiable.
             </p>
@@ -629,16 +752,16 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.06 }}
-                  className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/80 p-7 transition hover:-translate-y-1 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-950/30"
+                  className={`group relative overflow-hidden rounded-3xl border p-7 transition hover:-translate-y-1 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-950/30 ${theme.card}`}
                 >
                   <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 transition group-hover:scale-105 group-hover:bg-cyan-400/20">
                     <div className="absolute inset-0 rounded-2xl bg-cyan-400/0 blur-xl transition group-hover:bg-cyan-400/20" />
-                    <Icon className="relative h-7 w-7 text-cyan-400" />
+                    <Icon className={`relative h-7 w-7 ${theme.accentText}`} />
                   </div>
 
-                  <h3 className="mb-3 text-2xl font-bold">{service.title}</h3>
+                  <h3 className={`mb-3 text-2xl font-bold ${darkMode ? "text-white" : "text-slate-950"}`}>{service.title}</h3>
 
-                  <p className="leading-7 text-slate-400">
+                  <p className={`leading-7 ${theme.mutedText}`}>
                     {service.description}
                   </p>
                 </motion.article>
@@ -651,13 +774,13 @@ function App() {
       {/* SECCIÓN TECNOLOGÍAS */}
       <section
         id="tecnologias"
-        className="relative border-y border-white/10 bg-slate-900/50 px-6 py-24"
+        className={`relative border-y px-6 py-24 transition-colors duration-500 ${theme.sectionAlt}`}
       >
         <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
           <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+            <p className={`mb-3 text-sm font-bold uppercase tracking-[0.3em] ${theme.accentText}`}>
               Tecnologías
             </p>
 
@@ -665,7 +788,7 @@ function App() {
               Experiencia aplicada en entornos reales.
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-slate-400">
+            <p className={`mt-5 text-lg leading-8 ${theme.mutedText}`}>
               Herramientas y plataformas utilizadas en operaciones de
               infraestructura, conectividad, soporte, monitoreo y colaboración
               empresarial.
@@ -685,21 +808,23 @@ function App() {
                   onClick={() => setActiveTechnology(index)}
                   className={`group relative overflow-hidden rounded-2xl border p-4 text-left transition duration-300 ${
                     index === activeTechnology
-                      ? "border-cyan-300 bg-cyan-400/20"
-                      : "border-cyan-400/20 bg-cyan-400/10 hover:border-cyan-300 hover:bg-cyan-400/15"
+                      ? "border-cyan-400 bg-cyan-400/20"
+                      : darkMode
+                        ? "border-cyan-400/20 bg-cyan-400/10 hover:border-cyan-300 hover:bg-cyan-400/15"
+                        : "border-cyan-500/30 bg-[#F5F9FC]/70 hover:border-cyan-500 hover:bg-cyan-50"
                   }`}
                 >
                   <div className="relative z-10">
                     <div className="flex items-center gap-3">
                       <span className="h-2 w-2 rounded-full bg-cyan-400 transition group-hover:bg-cyan-300" />
 
-                      <p className="text-sm font-bold text-cyan-200 transition group-hover:text-white">
+                      <p className={`text-sm font-bold transition ${darkMode ? "text-cyan-200 group-hover:text-white" : "text-cyan-700 group-hover:text-cyan-900"}`}>
                         {tech.name}
                       </p>
                     </div>
 
                     <div className="mt-4 max-h-0 overflow-hidden opacity-0 transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100">
-                      <p className="text-sm leading-6 text-slate-300">
+                      <p className={`text-sm leading-6 ${darkMode ? "text-slate-300" : "text-slate-700"}`}>
                         {tech.description}
                       </p>
                     </div>
@@ -714,7 +839,7 @@ function App() {
           <div
             onMouseEnter={() => setPauseTechnologyCarousel(true)}
             onMouseLeave={() => setPauseTechnologyCarousel(false)}
-            className="relative min-h-[680px] overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-slate-950/80 p-8 shadow-2xl shadow-cyan-950/40"
+            className="relative min-h-[680px] overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-slate-950/90 p-8 text-white shadow-2xl shadow-cyan-950/40"
           >
             <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
             <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
@@ -818,7 +943,7 @@ function App() {
       <section id="metodologia" className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-14 max-w-3xl">
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+            <p className={`mb-3 text-sm font-bold uppercase tracking-[0.3em] ${theme.accentText}`}>
               Metodología
             </p>
 
@@ -826,7 +951,7 @@ function App() {
               Un proceso claro para servicios técnicos bien ejecutados.
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-slate-400">
+            <p className={`mt-5 text-lg leading-8 ${theme.mutedText}`}>
               Cada intervención se aborda con orden, criterio técnico y enfoque
               en continuidad operativa, evitando improvisaciones y dejando
               evidencia del trabajo realizado.
@@ -841,15 +966,15 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.06 }}
-                className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 transition hover:border-cyan-400 hover:bg-slate-900"
+                className={`rounded-3xl border p-6 transition hover:border-cyan-400 ${theme.card}`}
               >
-                <p className="mb-6 text-4xl font-black text-cyan-400/40">
+                <p className={`mb-6 text-4xl font-black ${darkMode ? "text-cyan-400/40" : "text-cyan-700/40"}`}>
                   {step.number}
                 </p>
 
                 <h3 className="mb-3 text-xl font-bold">{step.title}</h3>
 
-                <p className="text-sm leading-6 text-slate-400">
+                <p className={`text-sm leading-6 ${theme.mutedText}`}>
                   {step.description}
                 </p>
               </motion.article>
@@ -861,11 +986,11 @@ function App() {
       {/* SECCIÓN ENFOQUE */}
       <section
         id="enfoque"
-        className="border-y border-white/10 bg-slate-900/50 px-6 py-24"
+        className={`border-y px-6 py-24 transition-colors duration-500 ${theme.sectionAlt}`}
       >
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
           <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+            <p className={`mb-3 text-sm font-bold uppercase tracking-[0.3em] ${theme.accentText}`}>
               Enfoque
             </p>
 
@@ -873,7 +998,7 @@ function App() {
               Tecnología con criterio técnico y documentación.
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-slate-400">
+            <p className={`mt-5 text-lg leading-8 ${theme.mutedText}`}>
               Gelianx es una marca técnica personal enfocada en infraestructura,
               redes, soporte y documentación tecnológica, construida desde la
               experiencia práctica y el aprendizaje continuo.
@@ -887,13 +1012,13 @@ function App() {
               return (
                 <div
                   key={item.title}
-                  className="rounded-3xl border border-slate-800 bg-slate-950/70 p-6"
+                  className={`rounded-3xl border p-6 ${theme.cardSoft}`}
                 >
-                  <Icon className="mb-5 h-7 w-7 text-cyan-400" />
+                  <Icon className={`mb-5 h-7 w-7 ${theme.accentText}`} />
 
                   <h3 className="mb-3 text-xl font-bold">{item.title}</h3>
 
-                  <p className="text-sm leading-6 text-slate-400">
+                  <p className={`text-sm leading-6 ${theme.mutedText}`}>
                     {item.description}
                   </p>
                 </div>
@@ -905,12 +1030,12 @@ function App() {
 
       {/* SECCIÓN CONTACTO */}
       <section id="contacto" className="px-6 py-24">
-        <div className="mx-auto max-w-4xl rounded-3xl border border-cyan-400/30 bg-cyan-400/10 p-10 text-center shadow-2xl shadow-cyan-950/30">
+        <div className={`mx-auto max-w-4xl rounded-3xl border border-cyan-400/30 p-10 text-center shadow-2xl shadow-cyan-950/20 ${darkMode ? "bg-slate-900 text-white shadow-xl shadow-slate-950/40" : "bg-[#F4F8FB]/72 backdrop-blur-sm"}`}>
           <h2 className="mb-4 text-4xl font-black">
             ¿Necesitas soporte o asesoría?
           </h2>
 
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-300">
+          <p className={`mx-auto mb-8 max-w-2xl text-lg ${theme.mutedText}`}>
             Escríbeme para revisar tu necesidad y definir una solución técnica
             adecuada para tu red, infraestructura o servicio TI.
           </p>
@@ -926,7 +1051,7 @@ function App() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative overflow-hidden border-t border-white/10 bg-slate-900 px-6 py-14">
+      <footer className={`relative overflow-hidden border-t px-6 py-14 transition-colors duration-500 ${theme.footer}`}>
         <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-60 w-60 rounded-full bg-blue-500/10 blur-3xl" />
 
@@ -939,42 +1064,42 @@ function App() {
               Infraestructura operativa
             </div>
 
-            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">
+            <p className={`mt-5 max-w-sm text-sm leading-6 ${theme.mutedText}`}>
               Marca técnica personal enfocada en infraestructura, redes,
               soporte, documentación y continuidad tecnológica.
             </p>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-slate-300">
+            <h3 className={`mb-4 text-sm font-bold uppercase tracking-[0.2em] ${darkMode ? "text-slate-300" : "text-slate-800"}`}>
               Navegación
             </h3>
 
-            <div className="flex flex-col gap-3 text-sm text-slate-400">
-              <a href="#servicios" className="transition hover:text-cyan-400">
+            <div className={`flex flex-col gap-3 text-sm ${theme.mutedText}`}>
+              <a href="#servicios" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
                 Servicios
               </a>
-              <a href="#tecnologias" className="transition hover:text-cyan-400">
+              <a href="#tecnologias" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
                 Tecnologías
               </a>
-              <a href="#metodologia" className="transition hover:text-cyan-400">
+              <a href="#metodologia" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
                 Metodología
               </a>
-              <a href="#enfoque" className="transition hover:text-cyan-400">
+              <a href="#enfoque" className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}>
                 Enfoque
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-slate-300">
+            <h3 className={`mb-4 text-sm font-bold uppercase tracking-[0.2em] ${darkMode ? "text-slate-300" : "text-slate-800"}`}>
               Contacto
             </h3>
 
-            <div className="flex flex-col gap-3 text-sm text-slate-400">
+            <div className={`flex flex-col gap-3 text-sm ${theme.mutedText}`}>
               <a
                 href="https://wa.me/593960451362"
-                className="transition hover:text-cyan-400"
+                className={`transition ${darkMode ? "hover:text-cyan-400" : "hover:text-cyan-700"}`}
               >
                 WhatsApp: +593 960 451 362
               </a>
@@ -984,7 +1109,7 @@ function App() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+        <div className={`mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t pt-6 text-sm md:flex-row md:items-center md:justify-between ${darkMode ? "border-white/10 text-slate-500" : "border-slate-200 text-slate-600"}`}>
           <p>© 2026 Gelianx. Marca personal técnica de infraestructura TI.</p>
           <p>Infraestructura, redes y soporte con enfoque técnico profesional.</p>
         </div>
