@@ -747,6 +747,25 @@ function App() {
       <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
 
       <div className="relative flex h-full flex-col justify-between">
+        <button
+  onClick={() =>
+    setActiveTechnology((current) =>
+      current === 0 ? technologies.length - 1 : current - 1
+    )
+  }
+  className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/20 bg-slate-950/70 text-cyan-300 backdrop-blur transition hover:bg-cyan-400/20 lg:hidden"
+>
+  ‹
+</button>
+
+<button
+  onClick={() =>
+    setActiveTechnology((current) => (current + 1) % technologies.length)
+  }
+  className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/20 bg-slate-950/70 text-cyan-300 backdrop-blur transition hover:bg-cyan-400/20 lg:hidden"
+>
+  ›
+</button>
         <div>
           <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
             Tecnología activa
