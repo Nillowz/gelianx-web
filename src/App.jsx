@@ -273,7 +273,7 @@ function App() {
 
   return (
     <main className={`relative isolate min-h-screen overflow-hidden transition-colors duration-500 ${theme.main}`}>
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-10 min-h-full overflow-hidden">
         {/* GLOW PRINCIPAL */}
         <div
           className={`absolute -top-48 right-[-14rem] h-[56rem] w-[56rem] rounded-full blur-3xl transition-all duration-700 ${
