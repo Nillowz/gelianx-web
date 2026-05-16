@@ -221,7 +221,10 @@ function App() {
   const [showValidationPopup, setShowValidationPopup] = useState(false);
   const [activeTechnology, setActiveTechnology] = useState(0);
   const [pauseTechnologyCarousel, setPauseTechnologyCarousel] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+  const savedTheme = localStorage.getItem("gelianx-theme");
+  return savedTheme ? savedTheme === "dark" : false;
+});
 
   // Popup automático CSV/GxP
   useEffect(() => {
@@ -238,6 +241,9 @@ function App() {
       clearTimeout(closeTimer);
     };
   }, []);
+  useEffect(() => {
+  localStorage.setItem("gelianx-theme", darkMode ? "dark" : "light");
+}, [darkMode]);
 
   // Carrusel automático de tecnologías
   useEffect(() => {
