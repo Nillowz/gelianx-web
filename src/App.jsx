@@ -480,14 +480,13 @@ function App() {
             </p>
 
             <h1 className="mb-6 text-5xl font-black leading-tight tracking-tight md:text-7xl">
-              Infraestructura tecnológica moderna para operaciones
-              empresariales.
+              Infraestructura, redes y soporte técnico con enfoque profesional y documentado.
             </h1>
 
             <p className="mb-8 max-w-2xl text-lg leading-8 text-slate-300">
-              Instalación, mantenimiento y soporte de infraestructura TI
-              orientados a disponibilidad, conectividad, seguridad,
-              documentación técnica y continuidad operativa.
+              Apoyo técnico en infraestructura, redes, soporte y documentación
+              para pequeñas empresas y entornos corporativos que necesitan
+              orden, estabilidad y criterio técnico.
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
@@ -875,9 +874,9 @@ function App() {
             </h2>
 
             <p className="mt-5 text-lg leading-8 text-slate-400">
-              Gelianx nace como una marca personal técnica para brindar
-              servicios de infraestructura, redes, soporte y mantenimiento con
-              una visión profesional, ordenada y orientada a resultados.
+              Gelianx es una marca técnica personal enfocada en infraestructura,
+              redes, soporte y documentación tecnológica, construida desde la
+              experiencia práctica y el aprendizaje continuo.
             </p>
           </div>
 
@@ -941,8 +940,8 @@ function App() {
             </div>
 
             <p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">
-              Servicios profesionales de infraestructura TI, redes, soporte,
-              seguridad y documentación técnica para entornos empresariales.
+              Marca técnica personal enfocada en infraestructura, redes,
+              soporte, documentación y continuidad tecnológica.
             </p>
           </div>
 
@@ -986,8 +985,8 @@ function App() {
         </div>
 
         <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Gelianx. Servicios profesionales de infraestructura TI.</p>
-          <p>Marca personal técnica orientada a soluciones empresariales.</p>
+          <p>© 2026 Gelianx. Marca personal técnica de infraestructura TI.</p>
+          <p>Infraestructura, redes y soporte con enfoque técnico profesional.</p>
         </div>
       </footer>
     </main>
