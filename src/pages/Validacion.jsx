@@ -9,6 +9,8 @@ import {
   Layers,
   Database,
   GitBranch,
+  Moon,
+  Sun,
 } from "lucide-react"
 import GelianxLogo from "../components/GelianxLogo"
 
@@ -154,14 +156,14 @@ function Validacion() {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-bold transition hover:bg-cyan-400/20 ${
-                darkMode ? "text-cyan-500" : "text-cyan-700"
-              }`}
-              title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-            >
-              {darkMode ? "Claro" : "Oscuro"}
-            </button>
+            onClick={() => setDarkMode(!darkMode)}
+            className={`rounded-xl border border-cyan-400/30 p-2 transition hover:bg-cyan-400/10 ${
+              darkMode ? "text-cyan-500" : "text-cyan-700"
+            }`}
+            title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+          >
+            {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
 
             <Link
               to="/"

@@ -164,17 +164,19 @@ function Servicios() {
           </Link>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-bold transition hover:bg-cyan-400/20 ${
-                darkMode ? "text-cyan-500" : "text-cyan-700"
-              }`}
-              title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-            >
-              {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              <span className="hidden sm:inline">{darkMode ? "Claro" : "Oscuro"}</span>
-            </button>
-
+           <button
+  onClick={() => setDarkMode(!darkMode)}
+  className={`rounded-xl border border-cyan-400/30 p-2 transition hover:bg-cyan-400/10 ${
+    darkMode ? "text-cyan-500" : "text-cyan-700"
+  }`}
+  title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+>
+  {darkMode ? (
+    <Sun className="h-5 w-5" />
+  ) : (
+    <Moon className="h-5 w-5" />
+  )}
+</button>
             <Link
               to="/"
               className={`rounded-full border px-5 py-2 text-sm font-bold transition ${

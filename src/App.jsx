@@ -482,13 +482,18 @@ function App() {
           </a>
 
           <button
-            onClick={() => setDarkMode(!darkMode)}
-            className={`hidden items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-bold transition hover:bg-cyan-400/20 md:inline-flex ${theme.accentButtonText}`}
-            title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-          >
-            {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            {darkMode ? "Claro" : "Oscuro"}
-          </button>
+  onClick={() => setDarkMode(!darkMode)}
+  className={`rounded-xl border border-cyan-400/30 p-2 transition hover:bg-cyan-400/10 ${
+    darkMode ? "text-cyan-500" : "text-cyan-700"
+  }`}
+  title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+>
+  {darkMode ? (
+    <Sun className="h-5 w-5" />
+  ) : (
+    <Moon className="h-5 w-5" />
+  )}
+</button>
 
           <button
             onClick={() => setDarkMode(!darkMode)}
