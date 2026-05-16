@@ -698,7 +698,7 @@ function App() {
         empresarial.
       </p>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 hidden gap-4 sm:grid-cols-2 lg:grid">
         {technologies.map((tech, index) => (
           <button
             key={tech.name}
