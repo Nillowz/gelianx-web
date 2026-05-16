@@ -5,6 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import GelianxLogo from "./components/GelianxLogo";
 import { useEffect, useState } from "react";
+import ciscoNetwork from "./assets/cisco-network.jpeg";
+import fortinetSecurity from "./assets/fortinet-security.jpeg";
+import microsoft365Image from "./assets/microsoft365.jpeg";
+import windowsServer from "./assets/windows-server.jpeg";
+import linuxServer from "./assets/linux-server.jpeg";
+import vmwareImage from "./assets/vmware.jpeg";
 import {
   Activity,
   CheckCircle2,
@@ -71,16 +77,42 @@ const services = [
 // DATA: TECNOLOGÍAS
 // ==============================
 const technologies = [
-  "Cisco",
-  "Fortinet",
-  "Microsoft 365",
-  "Windows Server",
-  "Linux",
-  "VMware",
-  "Zabbix",
-  "SharePoint",
-  "Veeam",
-  "Power BI",
+ {
+  name: "Cisco",
+  description:
+    "Segmentación de red, VLANs, conectividad crítica y estabilidad operativa en ambientes corporativos.",
+  image: ciscoNetwork,
+},
+  {
+  name: "Fortinet",
+  description:
+    "Control de accesos, VPN, políticas de seguridad y protección perimetral empresarial.",
+  image: fortinetSecurity,
+},
+  {
+  name: "Microsoft 365",
+  description:
+    "Administración de usuarios, colaboración empresarial, seguridad y continuidad operativa cloud.",
+  image: microsoft365Image,
+},
+ {
+  name: "Windows Server",
+  description:
+    "Servicios críticos, Active Directory, recursos compartidos y administración de infraestructura.",
+  image: windowsServer,
+},
+  {
+  name: "Linux",
+  description:
+    "Soporte para servicios, monitoreo, automatización y operación de entornos empresariales.",
+  image: linuxServer,
+},
+ {
+  name: "VMware",
+  description:
+    "Virtualización de infraestructura, optimización de recursos y continuidad operativa.",
+  image: vmwareImage,
+},
 ];
 
 // ==============================
@@ -212,7 +244,10 @@ const strengths = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showValidationPopup, setShowValidationPopup] = useState(false);
+  const [activeTechnology, setActiveTechnology] = useState(0);
+  const [pauseTechnologyCarousel, setPauseTechnologyCarousel] = useState(false);
 
+  
   useEffect(() => {
     const openTimer = setTimeout(() => {
       setShowValidationPopup(true);
@@ -227,6 +262,15 @@ function App() {
       clearTimeout(closeTimer);
     };
   }, []);
+    useEffect(() => {
+    if (pauseTechnologyCarousel) return;
+
+    const techTimer = setInterval(() => {
+      setActiveTechnology((current) => (current + 1) % technologies.length);
+    }, 7000);
+
+    return () => clearInterval(techTimer);
+  }, [pauseTechnologyCarousel]);
   return (
     <main className="min-h-screen overflow-hidden bg-slate-900 text-white">
       {/* POPUP VALIDACIÓN CSV/GxP */}
@@ -614,11 +658,12 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.06 }}
-                  className="group rounded-3xl border border-slate-800 bg-slate-900/80 p-7 transition hover:-translate-y-1 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-950/30"
+                  className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/80 p-7 transition hover:-translate-y-1 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-950/30"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 transition group-hover:bg-cyan-400/20">
-                    <Icon className="h-6 w-6 text-cyan-400" />
-                  </div>
+                  <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 transition group-hover:scale-105 group-hover:bg-cyan-400/20">
+  <div className="absolute inset-0 rounded-2xl bg-cyan-400/0 blur-xl transition group-hover:bg-cyan-400/20" />
+  <Icon className="relative h-7 w-7 text-cyan-400" />
+</div>
                   <h3 className="mb-3 text-2xl font-bold">{service.title}</h3>
                   <p className="leading-7 text-slate-400">
                     {service.description}
@@ -631,58 +676,150 @@ function App() {
       </section>
 
       {/* SECCIÓN TECNOLOGÍAS */}
-      <section
-        id="tecnologias"
-        className="relative border-y border-white/10 bg-slate-900/50 px-6 py-24"
-      >
-        <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
+<section
+  id="tecnologias"
+  className="relative border-y border-white/10 bg-slate-900/50 px-6 py-24"
+>
+  <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
-          <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
-              Tecnologías
-            </p>
-            <h2 className="text-4xl font-black tracking-tight md:text-5xl">
-              Experiencia aplicada en entornos reales.
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-slate-400">
-              Herramientas y plataformas utilizadas en operaciones de
-              infraestructura, conectividad, soporte, monitoreo y colaboración
-              empresarial.
-            </p>
+  <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
+    <div>
+      <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+        Tecnologías
+      </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              {technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white"
-                >
-                  {tech}
-                </span>
-              ))}
+      <h2 className="text-4xl font-black tracking-tight md:text-5xl">
+        Experiencia aplicada en entornos reales.
+      </h2>
+
+      <p className="mt-5 text-lg leading-8 text-slate-400">
+        Herramientas y plataformas utilizadas en operaciones de
+        infraestructura, conectividad, soporte, monitoreo y colaboración
+        empresarial.
+      </p>
+
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {technologies.map((tech, index) => (
+          <button
+            key={tech.name}
+  onMouseEnter={() => {
+    setPauseTechnologyCarousel(true)
+    setActiveTechnology(index)
+  }}
+  onMouseLeave={() => {
+    setPauseTechnologyCarousel(false)
+  }}
+  onClick={() => setActiveTechnology(index)}
+  className={`group relative overflow-hidden rounded-2xl border p-4 text-left transition duration-300 ${
+              index === activeTechnology
+                ? "border-cyan-300 bg-cyan-400/20"
+                : "border-cyan-400/20 bg-cyan-400/10 hover:border-cyan-300 hover:bg-cyan-400/15"
+            }`}
+          >
+            <div className="relative z-10">
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 transition group-hover:bg-cyan-300" />
+
+                <p className="text-sm font-bold text-cyan-200 transition group-hover:text-white">
+                  {tech.name}
+                </p>
+              </div>
+
+              <div className="mt-4 max-h-0 overflow-hidden opacity-0 transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100">
+                <p className="text-sm leading-6 text-slate-300">
+                  {tech.description}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            {metrics.map((metric) => {
-              const Icon = metric.icon;
-              return (
-                <div
-                  key={metric.label}
-                  className="rounded-3xl border border-slate-800 bg-slate-950/80 p-6"
-                >
-                  <Icon className="mb-5 h-7 w-7 text-cyan-400" />
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-                    {metric.label}
-                  </p>
-                  <p className="mt-2 text-2xl font-black">{metric.value}</p>
-                </div>
-              );
-            })}
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/0 to-cyan-400/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div
+      onMouseEnter={() => setPauseTechnologyCarousel(true)}
+      onMouseLeave={() => setPauseTechnologyCarousel(false)}
+      className="relative min-h-[680px] overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-slate-950/80 p-8 shadow-2xl shadow-cyan-950/40"
+    >
+      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+      <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
+
+      <div className="relative flex h-full flex-col justify-between">
+        <div>
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-cyan-400">
+            Tecnología activa
+          </p>
+
+          <motion.div
+  key={technologies[activeTechnology].name}
+  initial={{ opacity: 0, y: 12 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.45 }}
+>
+  <h3 className="text-5xl font-black">
+    {technologies[activeTechnology].name}
+  </h3>
+
+  <p className="mt-6 text-lg leading-8 text-slate-300">
+    {technologies[activeTechnology].description}
+  </p>
+</motion.div>
+</div>
+
+        <div className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-slate-900/80 p-3">
+  <div className="relative h-80 overflow-hidden rounded-2xl [perspective:1000px]">
+    {technologies[activeTechnology].image ? (
+  <motion.img
+    key={technologies[activeTechnology].image}
+    src={technologies[activeTechnology].image}
+    alt={technologies[activeTechnology].name}
+    initial={{ opacity: 0, scale: 1.03, y: 8 }}
+    animate={{ opacity: 1, scale: 1.06, y: -6 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="absolute inset-0 h-full w-full object-cover"
+  />
+) : (
+  <motion.div
+    key={technologies[activeTechnology].name}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.45 }}
+    className="absolute inset-0 h-full w-full bg-[radial-gradient(circle_at_30%_30%,rgba(34,211,238,0.25),transparent_35%),linear-gradient(135deg,rgba(34,211,238,0.12),rgba(59,130,246,0.08))]"
+  />
+)}
+
+    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+
+    <div className="absolute bottom-6 left-6 rounded-2xl border border-cyan-400/20 bg-slate-950/70 px-5 py-3 backdrop-blur">
+      <p className="text-xs uppercase tracking-[0.25em] text-slate-500">
+        Referencia visual
+      </p>
+      <p className="mt-1 font-bold text-cyan-200">
+        {technologies[activeTechnology].name}
+      </p>
+    </div>
+  </div>
+</div>
+
+        <div className="mt-6 flex gap-2">
+          {technologies.map((tech, index) => (
+            <button
+              key={tech.name}
+              onClick={() => setActiveTechnology(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === activeTechnology
+                  ? "w-8 bg-cyan-400"
+                  : "w-2 bg-slate-600 hover:bg-cyan-400/60"
+              }`}
+            />
+          ))}
         </div>
-      </section>
-
+      </div>
+    </div>
+  </div>
+</section>
       {/* SECCIÓN METODOLOGÍA */}
       <section id="metodologia" className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
@@ -788,7 +925,7 @@ function App() {
       <footer className="relative overflow-hidden border-t border-white/10 bg-slate-900 px-6 py-14">
       <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
 
-<      div className="absolute bottom-0 left-0 h-60 w-60 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-60 w-60 rounded-full bg-blue-500/10 blur-3xl" />
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3">
           <div>
             <GelianxLogo />
