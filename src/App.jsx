@@ -495,13 +495,7 @@ function App() {
   )}
 </button>
 
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className={`rounded-xl border border-cyan-400/30 p-2 transition hover:bg-cyan-400/10 md:hidden ${theme.accentButtonText}`}
-            title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-          >
-            {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </button>
+        
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
